@@ -12,22 +12,26 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        NSMutableString *userInput = [@"This" mutableCopy];
-//        NSMutableString *firstPartPigWord = [@"" mutableCopy];
-        //NSRange range = NSMakeRange(0, 1); // ONLY GRABBING FIRST LETTER
+        NSMutableString *finalString = [@"" mutableCopy];
+        
+        NSMutableString *userInput = [@"That'll" mutableCopy];
+        
+        NSMutableString *userInputSentence = [@"This'll be our f'orst T'aste" mutableCopy];
         
         PigLatin *pigword = [[PigLatin alloc] init];
+
+        //WORD TEST
+        userInput = [[pigword makePigLatin:userInput] mutableCopy];
+        NSLog(@"Final Word Test: %@", userInput);
         
-        userInput = [pigword makePigLatin:userInput];
-        NSLog(@"Final: %@", userInput);
+        //SENTANCE TEST
+        finalString = [[pigword makePigLatinSentence:userInputSentence] mutableCopy];
         
-//        firstPartPigWord = [[userInput substringWithRange:NSMakeRange(0, 1)] mutableCopy];
-//        NSLog(@"UserInput: %@", userInput);
-//        NSLog(@"firstPartPigWord: %@", firstPartPigWord);
-//        userInput = [[userInput stringByReplacingCharactersInRange:range withString:@""] mutableCopy];
-//        [userInput appendString:firstPartPigWord];
-//
-//        NSLog(@"UserInput: %@", userInput);
+        NSLog(@"FINAL: %@", finalString);
+        
+        // TRICK TO REMOVE ALL SPACES FROM A SENTENCE BEOFRE TOSSING INTO ARRAY
+        // https://stackoverflow.com/questions/4814641/how-to-separate-string-by-space-using-objective-c
+
     }
     return 0;
 }

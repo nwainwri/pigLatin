@@ -13,6 +13,7 @@
 //@property NSMutableString *firstPart;
 //@property NSMutableString *finishWord;
 
+
 @end
 
 @implementation PigLatin
@@ -24,17 +25,35 @@
     NSRange range = NSMakeRange(0, 1);
     NSMutableString *firstPart = [@"" mutableCopy];
     
-    firstPart = [[word substringWithRange:NSMakeRange(0, 1)] mutableCopy];
-    //NSLog(@"UserInput: %@", word);
-    //NSLog(@"firstPartPigWord: %@", firstPart);
-    word = [[word stringByReplacingCharactersInRange:range withString:@""] mutableCopy];
-    //NSLog(@"UserInput: %@", word);
+    word = [[word componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
 
+    firstPart = [[word substringWithRange:NSMakeRange(0, 1)] mutableCopy];
+    word = [[word stringByReplacingCharactersInRange:range withString:@""] mutableCopy];
     word = [word stringByAppendingString:firstPart];
-    //[word appendString:firstPart];
-    
-    //NSLog(@"UserInput: %@", word);
+    word = [word stringByAppendingString:@"ay"];
+
     return word;
 }
+
+- (NSString *)makePigLatinSentence:(NSString *)sentance{
+    NSArray *array = [sentance componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]]; // removes extra spaces; see below URL
+    int countArray = [array count];
+    
+    NSMutableString *tempSentance = [@"" mutableCopy];
+    
+    for (int a = 0; a < countArray; a++) {
+        NSMutableString *tempWord = [@"" mutableCopy];
+        //NSLog(@"PRINT: [%i] : %@", a, array[a]);
+        tempWord = [[self makePigLatin:array[a]] mutableCopy];
+        //NSLog(@"PRINT: [%i] : %@", a, tempWord);
+        tempSentance = [[tempSentance stringByAppendingString:tempWord] mutableCopy];
+        tempSentance = [[tempSentance stringByAppendingString:@" "] mutableCopy];
+    }
+    //NSLog(@"Sentenace: %@", tempSentance);
+    return tempSentance;
+}
+
+
 
 @end

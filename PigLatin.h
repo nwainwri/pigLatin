@@ -10,6 +10,8 @@
 
 @interface PigLatin : NSObject
 
+- (NSString *)makePigLatinSentence:(NSString *)sentance;
+
 - (NSString *)makePigLatin:(NSString *)word;
 
 @end
