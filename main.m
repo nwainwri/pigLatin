@@ -32,8 +32,11 @@ int main(int argc, const char * argv[]) {
         NSLog(@"CATEGORY TEST; WORD: %@", userInput);
         
         //SENTENCE TEST WITH CATEGORY
-        userInputSentence = [userInputSentence stringByPigLatinization];
+        userInputSentence = [[userInputSentence stringByPigLatinization] mutableCopy];
         NSLog(@"CATEGORY TEST: SENTENCT: %@", userInputSentence);
+        
+//        NEXT STEP IS MAKING A CONSONANT DICTIONARY AND USING TO CHECK WORDS FOR themeBadTextColorErr
+//        https://www.sltinfo.com/syllables-and-clusters/
 
     }
     return 0;

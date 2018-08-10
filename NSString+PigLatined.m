@@ -31,9 +31,9 @@
     
     for (int a = 0; a < countArray; a++) {
         NSMutableString *tempWord = [@"" mutableCopy];
-        NSLog(@"PRINT: [%i] : %@", a, array[a]);
+        //NSLog(@"PRINT: [%i] : %@", a, array[a]);
         tempWord = [[array[a] wordByPigLatinization] mutableCopy];
-        NSLog(@"PRINT: [%i] : %@", a, tempWord);
+        //NSLog(@"PRINT: [%i] : %@", a, tempWord);
         tempSentance = [[tempSentance stringByAppendingString:tempWord] mutableCopy];
         tempSentance = [[tempSentance stringByAppendingString:@" "] mutableCopy];
     }
