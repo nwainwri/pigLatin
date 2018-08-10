@@ -8,29 +8,32 @@
 
 #import <Foundation/Foundation.h>
 #import "PigLatin.h"
+#import "NSString+PigLatined.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         NSMutableString *finalString = [@"" mutableCopy];
-        
         NSMutableString *userInput = [@"That'll" mutableCopy];
-        
         NSMutableString *userInputSentence = [@"This'll be our f'orst T'aste" mutableCopy];
         
         PigLatin *pigword = [[PigLatin alloc] init];
-
         //WORD TEST
         userInput = [[pigword makePigLatin:userInput] mutableCopy];
-        NSLog(@"Final Word Test: %@", userInput);
-        
+        NSLog(@"WORD TEST: %@", userInput);
         //SENTANCE TEST
         finalString = [[pigword makePigLatinSentence:userInputSentence] mutableCopy];
-        
-        NSLog(@"FINAL: %@", finalString);
-        
+        NSLog(@"SENTENCE TEST: %@", finalString);
         // TRICK TO REMOVE ALL SPACES FROM A SENTENCE BEOFRE TOSSING INTO ARRAY
         // https://stackoverflow.com/questions/4814641/how-to-separate-string-by-space-using-objective-c
+        
+        //WORD TEST WITH CATEGORY --  WORKS
+        [userInput wordByPigLatinization];
+        NSLog(@"CATEGORY TEST; WORD: %@", userInput);
+        
+        //SENTENCE TEST WITH CATEGORY
+        userInputSentence = [userInputSentence stringByPigLatinization];
+        NSLog(@"CATEGORY TEST: SENTENCT: %@", userInputSentence);
 
     }
     return 0;

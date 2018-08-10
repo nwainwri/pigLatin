@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F1700D0F211E1AC100FC704D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F1700D0E211E1AC100FC704D /* main.m */; };
 		F1700D12211E203000FC704D /* PigLatin.m in Sources */ = {isa = PBXBuildFile; fileRef = F1700D11211E203000FC704D /* PigLatin.m */; };
+		F1700D18211E32AF00FC704D /* NSString+PigLatined.m in Sources */ = {isa = PBXBuildFile; fileRef = F1700D17211E32AF00FC704D /* NSString+PigLatined.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		F1700D0E211E1AC100FC704D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F1700D10211E203000FC704D /* PigLatin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PigLatin.h; sourceTree = "<group>"; };
 		F1700D11211E203000FC704D /* PigLatin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PigLatin.m; sourceTree = "<group>"; };
+		F1700D16211E32AF00FC704D /* NSString+PigLatined.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+PigLatined.h"; sourceTree = "<group>"; };
+		F1700D17211E32AF00FC704D /* NSString+PigLatined.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+PigLatined.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +50,8 @@
 				F1700D0E211E1AC100FC704D /* main.m */,
 				F1700D10211E203000FC704D /* PigLatin.h */,
 				F1700D11211E203000FC704D /* PigLatin.m */,
+				F1700D16211E32AF00FC704D /* NSString+PigLatined.h */,
+				F1700D17211E32AF00FC704D /* NSString+PigLatined.m */,
 				F1700D05211E1A2F00FC704D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1700D18211E32AF00FC704D /* NSString+PigLatined.m in Sources */,
 				F1700D0F211E1AC100FC704D /* main.m in Sources */,
 				F1700D12211E203000FC704D /* PigLatin.m in Sources */,
 			);

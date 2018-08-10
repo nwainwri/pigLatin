@@ -13,10 +13,10 @@
 //@property NSMutableString *firstPart;
 //@property NSMutableString *finishWord;
 
-
 @end
 
 @implementation PigLatin
+
 
 
 // basic PigLatin; doens't remove punc or check for constantants

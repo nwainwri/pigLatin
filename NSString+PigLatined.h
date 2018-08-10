@@ -1,5 +1,5 @@
 //
-//  pigLatin.h
+//  NSString+PigLatined.h
 //  pigLatin
 //
 //  Created by Nathan Wainwright on 2018-08-10.
@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PigLatin : NSObject
+@interface NSString (PigLatined)
 
+- (NSString *)wordByPigLatinization;
 
-- (NSString *)makePigLatinSentence:(NSString *)sentance;
-
-- (NSString *)makePigLatin:(NSString *)word;
+- (NSString *)stringByPigLatinization;
 
 @end
