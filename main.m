@@ -78,7 +78,21 @@ int main(int argc, const char * argv[]) {
         //NSLog(@"userInput PUNC REMOVED: %@", userInput);
         // this finds "Th" (consonant" and removes from front... puts on end... adds "ay" ...
         
+        // first take userInput; go through "three letter" consonant array
         
+        for (int a = 0; a < [threeLetter count]; a++) {
+            
+            if ([userInput rangeOfString:threeLetter[a]].location != NSNotFound) {
+                NSLog(@"three letter found %@", threeLetter[a]);
+            }
+        }
+        
+//        NSString *string = @"hello bla bla";
+//        if ([string rangeOfString:@"bla"].location == NSNotFound) {
+//            NSLog(@"string does not contain bla");
+//        } else {
+//            NSLog(@"string contains bla!");
+//        }
         
         firstPart = [[searchString substringWithRange:rangeTest] mutableCopy];
         //NSLog(@"substringWithRange: firstPart %@", firstPart);
