@@ -9,48 +9,61 @@
 #import "PigLatin.h"
 
 @interface PigLatin()
-
-//@property NSMutableString *firstPart;
-//@property NSMutableString *finishWord;
-
 @end
 
 @implementation PigLatin
 
-
-
-// basic PigLatin; doens't remove punc or check for constantants
-
 - (NSString *)makePigLatin:(NSString *)word{
-    NSRange range = NSMakeRange(0, 1);
+//                   CONSONANT DICTIONARY
+//                    https://www.sltinfo.com/syllables-and-clusters/
+    BOOL whichArray = NO;
+    BOOL doneWord = NO;
     NSMutableString *firstPart = [@"" mutableCopy];
+//            CONSONTANT ARRAYS
+    NSArray *twoLetter = @[@"sm",@"sn",@"st",@"sw",@"sk",@"sl",@"sp",@"dw",@"tw",@"th",@"sp",@"dr",@"tr",@"qu",@"cr",@"cl",@"pr",@"fr",@"br",@"gr",@"pl",@"fl",@"bl",@"gl"];
+    NSArray *threeLetter = @[@"shr",@"thr",@"thw",@"sph",@"spl",@"spr",@"str",@"scr",@"squ"];
     
-    word = [[word componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
-
-    firstPart = [[word substringWithRange:NSMakeRange(0, 1)] mutableCopy];
-    word = [[word stringByReplacingCharactersInRange:range withString:@""] mutableCopy];
-    word = [word stringByAppendingString:firstPart];
-    word = [word stringByAppendingString:@"ay"];
-
-    return word;
+    if (whichArray == NO) {
+        for (int a = 0; a < [threeLetter count]; a++) {
+            if ([word rangeOfString:threeLetter[a]].location != NSNotFound) {
+                NSRange rangeTest = NSMakeRange(0, 3);
+                firstPart = [[word substringWithRange:rangeTest] mutableCopy];
+                word = [[word stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
+                word = [[word stringByAppendingString:threeLetter[a]] mutableCopy];
+                firstPart = [[word stringByAppendingString:@"ay"] mutableCopy];
+                doneWord = YES;
+            } else {
+                whichArray = YES;
+            }
+        }
+        if ((whichArray == YES) && (doneWord == NO)) {
+            for (int a = 0; a < [twoLetter count]; a++) {
+                if (([word rangeOfString:twoLetter[a]].location != NSNotFound) && doneWord == NO) {
+                    NSRange rangeTest = NSMakeRange(0, 2);
+                    firstPart = [[word substringWithRange:rangeTest] mutableCopy];
+                    word = [[word stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
+                    word = [[word stringByAppendingString:twoLetter[a]] mutableCopy];
+                    firstPart = [[word stringByAppendingString:@"ay"] mutableCopy];
+                    doneWord = YES;
+                }
+            }
+            
+        }
+    }
+    return firstPart;
 }
 
 - (NSString *)makePigLatinSentence:(NSString *)sentance{
     NSArray *array = [sentance componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]]; // removes extra spaces; see below URL
+    array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
     int countArray = [array count];
-    
     NSMutableString *tempSentance = [@"" mutableCopy];
-    
     for (int a = 0; a < countArray; a++) {
         NSMutableString *tempWord = [@"" mutableCopy];
-        //NSLog(@"PRINT: [%i] : %@", a, array[a]);
         tempWord = [[self makePigLatin:array[a]] mutableCopy];
-        //NSLog(@"PRINT: [%i] : %@", a, tempWord);
         tempSentance = [[tempSentance stringByAppendingString:tempWord] mutableCopy];
         tempSentance = [[tempSentance stringByAppendingString:@" "] mutableCopy];
     }
-    //NSLog(@"Sentenace: %@", tempSentance);
     return tempSentance;
 }
 
