@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
         NSArray *threeLetter = @[@"shr",@"thr",@"thw",@"sph",@"spl",@"spr",@"str",@"scr",@"squ"];
         
         NSMutableString *finalString = [@"" mutableCopy];
-        NSMutableString *userInput = [@"DWELL'ERING" mutableCopy];
+        NSMutableString *userInput = [@"This'll" mutableCopy];
         NSMutableString *searchString = [@"th" mutableCopy];
         NSMutableString *userInputSentence = [@"This'll be our f'orst T'aste" mutableCopy];
         
@@ -78,43 +78,54 @@ int main(int argc, const char * argv[]) {
         //NSLog(@"userInput PUNC REMOVED: %@", userInput);
         // this finds "Th" (consonant" and removes from front... puts on end... adds "ay" ...
         
-        // first take userInput; go through "three letter" consonant array
-        
-//         WORKING loop to confirm/replace a three letter consonant
-//        for (int a = 0; a < [threeLetter count]; a++) {
-//            if ([userInput rangeOfString:threeLetter[a]].location != NSNotFound) {
-//                NSRange rangeTest = [userInput rangeOfString:threeLetter[a]];
-//                NSLog(@"three letter FOUND:: %@", threeLetter[a]);
-//                NSLog(@"TEST WORD: %@", userInput);
-//                firstPart = [[userInput substringWithRange:rangeTest] mutableCopy];
-//                NSLog(@"substringWithRange, userin:: %@", userInput);
-//                userInput = [[userInput stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
-//                NSLog(@"stringByReplacingCharactersInRange: %@", userInput);
-//                userInput = [[userInput stringByAppendingString:threeLetter[a]] mutableCopy];
-//                NSLog(@"stringByAppendingString: %@", userInput);
-//                firstPart = [[userInput stringByAppendingString:@"ay"] mutableCopy];
-//                NSLog(@"stringByAppendingString: %@", firstPart);
-//            }
-//        }
-//        WORKING :: THREE LETTER
-        
-//        WORKING TWO LETTER FUNCTION FINDER AND EDITOR
-        for (int a = 0; a < [twoLetter count]; a++) {
-            if ([userInput rangeOfString:twoLetter[a]].location != NSNotFound) {
-                NSRange rangeTest = [userInput rangeOfString:twoLetter[a]];
-                NSLog(@"three letter FOUND:: %@", twoLetter[a]);
-                NSLog(@"TEST WORD: %@", userInput);
-                firstPart = [[userInput substringWithRange:rangeTest] mutableCopy];
-                NSLog(@"substringWithRange, userin:: %@", userInput);
-                userInput = [[userInput stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
-                NSLog(@"stringByReplacingCharactersInRange: %@", userInput);
-                userInput = [[userInput stringByAppendingString:twoLetter[a]] mutableCopy];
-                NSLog(@"stringByAppendingString: %@", userInput);
-                firstPart = [[userInput stringByAppendingString:@"ay"] mutableCopy];
-                NSLog(@"stringByAppendingString: %@", firstPart);
-            }
+        BOOL whichArray = NO; // in theory will switch from THREE to TWO if "THREE" letters aren't found.
+        if (whichArray == NO) {
+            //         WORKING loop to confirm/replace a three letter consonant
+            
+            // ISSUE; THIS BOOL CHECK WILL FAIL FIRST TIME IT DOESN'T RETURN TRUE....
+            
+            // SECOND ISSUE HOW TO ENFORCE ONLY ONE PIG WORD CHANGE
+            
+            
+            for (int a = 0; a < [threeLetter count]; a++) {
+                if ([userInput rangeOfString:threeLetter[a]].location != NSNotFound) {
+                    NSRange rangeTest = [userInput rangeOfString:threeLetter[a]];
+                    NSLog(@"THREE LETTER FOUND:: %@", threeLetter[a]);
+                    NSLog(@"TEST WORD: %@", userInput);
+                    firstPart = [[userInput substringWithRange:rangeTest] mutableCopy];
+                    NSLog(@"substringWithRange, userin:: %@", userInput);
+                    userInput = [[userInput stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
+                    NSLog(@"stringByReplacingCharactersInRange: %@", userInput);
+                    userInput = [[userInput stringByAppendingString:threeLetter[a]] mutableCopy];
+                    NSLog(@"stringByAppendingString: %@", userInput);
+                    firstPart = [[userInput stringByAppendingString:@"ay"] mutableCopy];
+                    NSLog(@"stringByAppendingString: %@", firstPart);
+//                            WORKING :: THREE LETTER
+                } else {
+                    whichArray = YES;
+                }
+            } // END IF
+            
+            if (whichArray == YES) {
+//                        WORKING TWO LETTER FUNCTION FINDER AND EDITOR
+                for (int a = 0; a < [twoLetter count]; a++) {
+                    if ([userInput rangeOfString:twoLetter[a]].location != NSNotFound) {
+                        NSRange rangeTest = [userInput rangeOfString:twoLetter[a]];
+                        NSLog(@"TWO LETTER FOUND:: %@", twoLetter[a]);
+                        NSLog(@"TEST WORD: %@", userInput);
+                        firstPart = [[userInput substringWithRange:rangeTest] mutableCopy];
+                        NSLog(@"substringWithRange, userin:: %@", userInput);
+                        userInput = [[userInput stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
+                        NSLog(@"stringByReplacingCharactersInRange: %@", userInput);
+                        userInput = [[userInput stringByAppendingString:twoLetter[a]] mutableCopy];
+                        NSLog(@"stringByAppendingString: %@", userInput);
+                        firstPart = [[userInput stringByAppendingString:@"ay"] mutableCopy];
+                        NSLog(@"stringByAppendingString: %@", firstPart);
+                    }
+                }
+//                        WORKING:: TWO LETTER
+            } // END IF
         }
-//        WORKING:: TWO LETTER
     }
     return 0;
 }
