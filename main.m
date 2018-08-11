@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
         NSArray *threeLetter = @[@"shr",@"thr",@"thw",@"sph",@"spl",@"spr",@"str",@"scr",@"squ"];
         
         NSMutableString *finalString = [@"" mutableCopy];
-        NSMutableString *userInput = [@"That'll" mutableCopy];
+        NSMutableString *userInput = [@"DWELL'ERING" mutableCopy];
         NSMutableString *searchString = [@"th" mutableCopy];
         NSMutableString *userInputSentence = [@"This'll be our f'orst T'aste" mutableCopy];
         
@@ -70,41 +70,51 @@ int main(int argc, const char * argv[]) {
         
         userInput = [[userInput lowercaseString] mutableCopy]; // takes userInput and drops it to lowercase
         
-        NSRange rangeTest = [userInput rangeOfString:searchString];
+        //NSRange rangeTest = [userInput rangeOfString:searchString];
         //        NSRange range = NSMakeRange(0, 1);
         NSMutableString *firstPart = [@"" mutableCopy];
-        NSLog(@"firstPart: %@", firstPart);
+        //NSLog(@"firstPart: %@", firstPart);
         userInput = [[userInput componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
         //NSLog(@"userInput PUNC REMOVED: %@", userInput);
         // this finds "Th" (consonant" and removes from front... puts on end... adds "ay" ...
         
         // first take userInput; go through "three letter" consonant array
         
-        for (int a = 0; a < [threeLetter count]; a++) {
-            
-            if ([userInput rangeOfString:threeLetter[a]].location != NSNotFound) {
-                NSLog(@"three letter found %@", threeLetter[a]);
+//         WORKING loop to confirm/replace a three letter consonant
+//        for (int a = 0; a < [threeLetter count]; a++) {
+//            if ([userInput rangeOfString:threeLetter[a]].location != NSNotFound) {
+//                NSRange rangeTest = [userInput rangeOfString:threeLetter[a]];
+//                NSLog(@"three letter FOUND:: %@", threeLetter[a]);
+//                NSLog(@"TEST WORD: %@", userInput);
+//                firstPart = [[userInput substringWithRange:rangeTest] mutableCopy];
+//                NSLog(@"substringWithRange, userin:: %@", userInput);
+//                userInput = [[userInput stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
+//                NSLog(@"stringByReplacingCharactersInRange: %@", userInput);
+//                userInput = [[userInput stringByAppendingString:threeLetter[a]] mutableCopy];
+//                NSLog(@"stringByAppendingString: %@", userInput);
+//                firstPart = [[userInput stringByAppendingString:@"ay"] mutableCopy];
+//                NSLog(@"stringByAppendingString: %@", firstPart);
+//            }
+//        }
+//        WORKING :: THREE LETTER
+        
+//        WORKING TWO LETTER FUNCTION FINDER AND EDITOR
+        for (int a = 0; a < [twoLetter count]; a++) {
+            if ([userInput rangeOfString:twoLetter[a]].location != NSNotFound) {
+                NSRange rangeTest = [userInput rangeOfString:twoLetter[a]];
+                NSLog(@"three letter FOUND:: %@", twoLetter[a]);
+                NSLog(@"TEST WORD: %@", userInput);
+                firstPart = [[userInput substringWithRange:rangeTest] mutableCopy];
+                NSLog(@"substringWithRange, userin:: %@", userInput);
+                userInput = [[userInput stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
+                NSLog(@"stringByReplacingCharactersInRange: %@", userInput);
+                userInput = [[userInput stringByAppendingString:twoLetter[a]] mutableCopy];
+                NSLog(@"stringByAppendingString: %@", userInput);
+                firstPart = [[userInput stringByAppendingString:@"ay"] mutableCopy];
+                NSLog(@"stringByAppendingString: %@", firstPart);
             }
         }
-        
-//        NSString *string = @"hello bla bla";
-//        if ([string rangeOfString:@"bla"].location == NSNotFound) {
-//            NSLog(@"string does not contain bla");
-//        } else {
-//            NSLog(@"string contains bla!");
-//        }
-        
-        firstPart = [[searchString substringWithRange:rangeTest] mutableCopy];
-        //NSLog(@"substringWithRange: firstPart %@", firstPart);
-        
-        userInput = [[userInput stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
-        //NSLog(@"stringByReplacingCharactersInRange: %@", userInput);
-        userInput = [[userInput stringByAppendingString:firstPart] mutableCopy];
-        //NSLog(@"stringByAppendingString: %@", userInput);
-        firstPart = [[userInput stringByAppendingString:@"ay"] mutableCopy];
-        //NSLog(@"stringByAppendingString: %@", firstPart);
-        
-
+//        WORKING:: TWO LETTER
     }
     return 0;
 }
