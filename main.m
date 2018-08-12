@@ -12,21 +12,21 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        
-//        NSMutableString *finalString = [@"" mutableCopy];
-        NSMutableString *userInput = [@"Thwip'd" mutableCopy];
-//        NSMutableString *searchString = [@"th" mutableCopy];
-        NSMutableString *userInputSentence = [@"This'll be our f'orst T'aste" mutableCopy];
-        userInput = [[userInput lowercaseString] mutableCopy]; // takes userInput and drops it to lowercase
-        userInput = [[userInput componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
-        PigLatin *pigTest = [[PigLatin alloc] init];
-        
-        NSLog(@"WORD TEST    ::%@", [pigTest makePigLatin:userInput]);
-        
-        NSLog(@"SENTENCE TEST::%@", [pigTest makePigLatinSentence:userInputSentence]);
+//        NSMutableString *userInput1 = [@"Before" mutableCopy];
+//        NSMutableString *userInputSentence1 = [@"      This'll        be our f'orst            T'aste" mutableCopy];
+//        PigLatin *pigTest = [[PigLatin alloc] init];
+//        NSLog(@"WORD TEST    ::%@", [pigTest makePigLatin:userInput1]);
+//        NSLog(@"SENTENCE TEST::%@", [pigTest makePigLatinSentence:userInputSentence1]);
 
         
+        //NSMutableString *userInput2 = [@"BEfore" mutableCopy];
+        //NSLog(@"USER INPUT WORD:: %@", [userInput2 wordByPigLatinization]);
+        
+        NSMutableString *userInputSentence2 = [@"      This'll        be our f'orst            T'aste" mutableCopy];
+        NSLog(@"USER INPUT SENTEANCE:: %@", [userInputSentence2 stringByPigLatinization]);
+        
 
+        
         
     }
     return 0;

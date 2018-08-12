@@ -14,15 +14,33 @@
 @implementation PigLatin
 
 - (NSString *)makePigLatin:(NSString *)word{
-//                   CONSONANT DICTIONARY
-//                    https://www.sltinfo.com/syllables-and-clusters/
+    //                   CONSONANT DICTIONARY
+    //                    https://www.sltinfo.com/syllables-and-clusters/
     BOOL whichArray = NO;
     BOOL doneWord = NO;
     NSMutableString *firstPart = [@"" mutableCopy];
-//            CONSONTANT ARRAYS
+    //            CONSONTANT ARRAYS
     NSArray *twoLetter = @[@"sm",@"sn",@"st",@"sw",@"sk",@"sl",@"sp",@"dw",@"tw",@"th",@"sp",@"dr",@"tr",@"qu",@"cr",@"cl",@"pr",@"fr",@"br",@"gr",@"pl",@"fl",@"bl",@"gl"];
     NSArray *threeLetter = @[@"shr",@"thr",@"thw",@"sph",@"spl",@"spr",@"str",@"scr",@"squ"];
     
+    word = [[word lowercaseString] mutableCopy]; // takes userInput and drops it to lowercase
+    word = [[word componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
+    
+    NSUInteger wordlength = word.length;
+    NSLog(@"WORD LENGTH AS A NUMBER %lu", (unsigned long)wordlength);
+    
+    if (wordlength < 4) {
+        NSRange rangeTest = NSMakeRange(0, 1);
+        firstPart = [[word substringWithRange:rangeTest] mutableCopy];
+        word = [word substringFromIndex:1];
+        //word = [[word stringByReplacingCharactersInRange:rangeTest withString:@""] mutableCopy];
+        word = [[word stringByAppendingString:firstPart] mutableCopy];
+        firstPart = [[word stringByAppendingString:@"ay"] mutableCopy];
+        NSLog(@"SMALL WORD: %@", firstPart);
+    } else {
+        // where MAIN if will go
+    }
+    //  MAIN if
     if (whichArray == NO) {
         for (int a = 0; a < [threeLetter count]; a++) {
             if ([word rangeOfString:threeLetter[a]].location != NSNotFound) {
@@ -47,26 +65,33 @@
                     doneWord = YES;
                 }
             }
-            
         }
-    }
+    } // end MAIN if
     return firstPart;
 }
 
 - (NSString *)makePigLatinSentence:(NSString *)sentance{
-    NSArray *array = [sentance componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    array = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+    
+    sentance = [[sentance lowercaseString] mutableCopy];
+    
+    NSMutableArray *array = [[sentance componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] mutableCopy];;
+    array = [[array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] mutableCopy];
+    [array removeObject:@""];
     int countArray = [array count];
+    NSLog(@"ARRAY:: %@", array);
+    NSLog(@"COUNT ARRAY SIZE:: %i", countArray);
     NSMutableString *tempSentance = [@"" mutableCopy];
     for (int a = 0; a < countArray; a++) {
         NSMutableString *tempWord = [@"" mutableCopy];
         tempWord = [[self makePigLatin:array[a]] mutableCopy];
+        tempWord = [[[tempWord componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""] mutableCopy];
+        
         tempSentance = [[tempSentance stringByAppendingString:tempWord] mutableCopy];
+        NSLog(@"BUILD: %@", tempSentance);
         tempSentance = [[tempSentance stringByAppendingString:@" "] mutableCopy];
+        tempWord = [@"" mutableCopy];
     }
     return tempSentance;
 }
-
-
 
 @end
