@@ -66,7 +66,7 @@
             }
         }
     } // end MAIN if
-    return word;
+    return firstPart;
 }
 
 - (NSString *)stringByPigLatinization{
